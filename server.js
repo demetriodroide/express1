@@ -15,6 +15,10 @@ server.use(bodyParser.json());
 
 /////////////////////////////////
 
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+  });
+
 
 const noticias = [
     {
@@ -43,7 +47,7 @@ const noticias = [
 
     //apiresty
 
-    server.get('/loadImage', (req, res) => {
+    server.get('/loadNoticias', (req, res) => {
 res.send({ src: 'img/atlasV.jpg'});
     });
 

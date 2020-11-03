@@ -1,7 +1,13 @@
-//noticiasRef.on('value', function(snapshot) {
-  //  let noticias = Object.values( snapshot.val() );
-    
-    for ( let i = 0; i < noticias.length; i++){
+const { json } = require("express");
+
+async function getNoticias(){
+  let response = await fetch('http://localhost:8080/loadNoticias')
+  let data = await response.json();
+  
+}
+
+
+for ( let i = 0; i < noticias.length; i++){
   
       let caja = document.createElement("div");
       caja.className = "titudescri";
@@ -17,9 +23,7 @@
       //document.querySelector(".titudescri").appendChild(descripcion);
       descripcion.innerText = noticias[i].descripcion;
       
-      }
-  
-  });
+      };
   
 
   /*
