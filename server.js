@@ -15,10 +15,6 @@ server.use(bodyParser.json());
 
 /////////////////////////////////
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-  });
-
 
 const noticias = [
     {
@@ -48,8 +44,12 @@ const noticias = [
     //apiresty
 
     server.get('/loadNoticias', (req, res) => {
-res.send({ src: 'img/atlasV.jpg'});
+
+        //codigo de firebase neceasrio 
+
+        res.send(noticias);
     });
 
+    server.listen(listenPort, () => console.log(`Server listening on ${listenPort}`));
 
 
