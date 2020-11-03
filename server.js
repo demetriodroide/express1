@@ -1,3 +1,21 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const server = express();
+const listenPort = 8080;
+
+
+const staticFilesPath = express.static('public');
+server.use(staticFilesPath);
+
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
+
+
+
+/////////////////////////////////
+
+
 const noticias = [
     {
         "titulo" :        "la mega fiesta",
@@ -20,47 +38,14 @@ const noticias = [
     }
     ];
 
-    //////////////////////////////
+
+    //////////////////////
+
+    //apiresty
+
+    server.get('/loadImage', (req, res) => {
+res.send({ src: 'img/atlasV.jpg'});
+    });
 
 
-const http = require('http');
-const listenport = 8080;
-const server = http.createServer((request,response) => {
-   if(request.url == "/sayHello") {
-       response.writeHead(200, {"content-type" : "text/plain"});
-       response.write("Hello");
-   }
-    response.end();
-});
-server.listen(listenport);
-console.log("server running")
 
-
-/////////////////////////////////
-
-let defaultDatabase = firebase.database();
-// ruta a la base de datos
-let noticiasRef = defaultDatabase.ref("noticias");
-
-noticiasRef.on('value', function(snapshot) {
-  let noticias = Object.values( snapshot.val() );
-  
-  for ( let i = 0; i < noticias.length; i++){
-
-    let caja = document.createElement("div");
-    caja.className = "titudescri";
-    document.querySelector("body").appendChild(caja);
-    
-    let titulo = document.createElement("h1");
-    caja.appendChild(titulo);
-    titulo.innerText = noticias[i].titulo;
-    
-    
-    let descripcion = document.createElement("h2");
-    caja.appendChild(descripcion);
-    //document.querySelector(".titudescri").appendChild(descripcion);
-    descripcion.innerText = noticias[i].descripcion;
-    
-    }
-
-});
